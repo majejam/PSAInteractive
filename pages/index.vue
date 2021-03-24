@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <c-header :links="content.body.header.links" />
-    <div class="content">
-      <c-video-player :data="content.video" />
-    </div>
-    <c-footer />
+    <c-video-player :data="content.video" />
   </div>
 </template>
 
@@ -30,7 +26,9 @@ export default {
 </script>
 
 <style lang="scss">
-.content {
-  margin: var(--col-main);
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 </style>

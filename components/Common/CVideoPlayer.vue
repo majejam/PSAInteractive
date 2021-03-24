@@ -1,17 +1,17 @@
 <template>
   <div class="CVideoPlayer">
-    <c-text tag="h2" type="bold" :text="currentStep.name" />
     <video
       v-show="!ended"
       ref="video_player"
       class="CVideoPlayer__video"
-      controls
       @ended="onVideoEnd()"
       :src="this.currentStep.src"
     ></video>
-    <button v-if="ended" @click="restart()">restart ?</button>
+    <div class="CVideoPlayer__restart u-flex-center">
+      <button v-if="ended" @click="restart()">restart ?</button>
+    </div>
     <transition name="fade">
-      <div v-if="questionShow" class="CVideoPlayer__questions u-flex-center">
+      <div v-show="questionShow" class="CVideoPlayer__questions u-flex-center">
         <button
           v-for="(path, index) in this.currentStep.paths"
           :key="index"
@@ -39,7 +39,9 @@ export default {
       ended: false,
     }
   },
-  mounted() {},
+  mounted() {
+    this.$refs.video_player.play()
+  },
   methods: {
     setCurrentVideo(step) {
       console.log('Video selected ! Loading the video...')
@@ -59,6 +61,8 @@ export default {
       this.ended = false
       this.questionShow = false
       this.currentStep = this.data.step
+      this.$refs.video_player.load()
+      this.$refs.video_player.play()
     },
   },
 }
@@ -66,9 +70,14 @@ export default {
 
 <style lang="scss">
 .CVideoPlayer {
+  width: 100%;
+  height: 100%;
+  background: var(--psa-blue);
+
   &__video {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__questions {
@@ -77,7 +86,7 @@ export default {
     left: 0;
     right: 0;
     height: 100px;
-    background: black;
+    background: var(--psa-blue);
 
     button {
       margin: 0 45px;
@@ -87,12 +96,31 @@ export default {
     }
   }
 
+  &__restart {
+    width: 100%;
+    height: 100%;
+
+    button {
+      padding: 20px 50px;
+      border: solid white 1px;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease-in-out all;
+
+      &:hover {
+        color: var(--psa-blue);
+        background: white;
+      }
+    }
+  }
+
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 0.5s;
+    transition: all 0.5s;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+    transform: translateY(100%);
   }
 }
 </style>

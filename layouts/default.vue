@@ -1,9 +1,24 @@
 <template>
   <div>
-    <Nuxt />
+    <c-loader v-if="showLoader" @start="hide()" />
+    <Nuxt v-if="!showLoader" />
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      showLoader: true,
+    }
+  },
+  methods: {
+    hide() {
+      this.showLoader = false
+    },
+  },
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,

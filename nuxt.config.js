@@ -5,7 +5,7 @@ export default {
     htmlAttrs: {
       lang: 'en',
     },
-    title: 'Mouton Cadet - Whishes',
+    title: 'PSA interactive',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
