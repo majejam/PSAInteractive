@@ -6,6 +6,7 @@
       ref="video_player"
       class="CVideoPlayer__video"
       controls
+      @ended="onVideoEnd()"
       :src="this.currentStep.src"
     ></video>
     <button v-if="ended" @click="restart()">restart ?</button>
@@ -38,10 +39,7 @@ export default {
       ended: false,
     }
   },
-  mounted() {
-    this._onVideoEnd = this.onVideoEnd.bind(this)
-    this.$refs.video_player.addEventListener('ended', this._onVideoEnd)
-  },
+  mounted() {},
   methods: {
     setCurrentVideo(step) {
       console.log('Video selected ! Loading the video...')
