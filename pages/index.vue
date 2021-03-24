@@ -2,7 +2,7 @@
   <div class="container">
     <c-header :links="content.body.header.links" />
     <div class="content">
-      <c-text tag="h2" type="bold" :text="content.body.content.text" />
+      <c-video-player :data="content.video" />
     </div>
     <c-footer />
   </div>

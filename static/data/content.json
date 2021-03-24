@@ -24,5 +24,45 @@
     "footer": {
       "text": "Footer"
     }
+  },
+  "video": {
+    "step": {
+      "src": "videos/video-placeholder.mp4",
+      "name": "video #1",
+      "paths": [
+        {
+          "question": "Go to video #2a",
+          "step": {
+            "src": "videos/video-placeholder.mp4",
+            "name": "video #2a",
+            "paths": [
+              {
+                "question": "Go to video #3a",
+                "step": {
+                  "src": "videos/video-placeholder.mp4",
+                  "name": "video #3a",
+                  "paths": [
+                    {
+                      "question": "Go to video #4a",
+                      "step": {
+                        "src": "videos/video-placeholder.mp4",
+                        "name": "video #4a"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "question": "Go to video #2b",
+          "step": {
+            "src": "videos/video-placeholder.mp4",
+            "name": "video #2b"
+          }
+        }
+      ]
+    }
   }
 }

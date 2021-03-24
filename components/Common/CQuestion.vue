@@ -1,6 +1,16 @@
 <template>
   <header class="CHeader u-flex-center">
-    <span>PSA Interactive Video Player</span>
+    <ul class="CHeader__links u-flex-center">
+      <li v-for="(link, index) in links" :key="index" class="CHeader__link">
+        <a
+          class="CHeader__link--a"
+          :href="link.href"
+          :target="link.target"
+          rel="noopener noreferrer"
+          >{{ link.text }}</a
+        >
+      </li>
+    </ul>
   </header>
 </template>
 
