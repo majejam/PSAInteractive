@@ -31,35 +31,82 @@
       "name": "video #1",
       "paths": [
         {
-          "question": "Go to video #2a",
+          "question": "Go to video #2",
           "step": {
             "src": "videos/video-placeholder.mp4",
-            "name": "video #2a",
+            "name": "video #2",
             "paths": [
               {
-                "question": "Go to video #3a",
+                "question": "Go to next experience",
                 "step": {
                   "src": "videos/video-placeholder.mp4",
-                  "name": "video #3a",
+                  "name": "Experience 1",
+                  "condition": "experience_1",
                   "paths": [
                     {
-                      "question": "Go to video #4a",
+                      "question": "Go to next experience",
                       "step": {
                         "src": "videos/video-placeholder.mp4",
-                        "name": "video #4a"
+                        "name": "Experience 2",
+                        "condition": "experience_2",
+                        "paths": [
+                          {
+                            "question": "Go to next experience",
+                            "step": {
+                              "src": "videos/video-placeholder.mp4",
+                              "name": "Experience 3",
+                              "condition": "experience_3",
+                              "paths": [
+                                {
+                                  "question": "Go to next video",
+                                  "step": {
+                                    "src": "videos/video-placeholder.mp4",
+                                    "name": "video #6",
+                                    "paths": [
+                                      {
+                                        "question": "Go to video #5a",
+                                        "step": {
+                                          "src": "videos/video-placeholder.mp4",
+                                          "name": "video #5a"
+                                        }
+                                      },
+                                      {
+                                        "question": "Go to video #5b",
+                                        "step": {
+                                          "src": "videos/video-placeholder.mp4",
+                                          "name": "video #5b"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
                 }
               }
+            ],
+            "choices": [
+              {
+                "name": "Choix n1",
+                "value": "experience_1",
+                "action": "add"
+              },
+              {
+                "name": "Choix n2",
+                "value": "experience_2",
+                "action": "add"
+              },
+              {
+                "name": "Choix n3",
+                "value": "experience_3",
+                "action": "add"
+              }
             ]
-          }
-        },
-        {
-          "question": "Go to video #2b",
-          "step": {
-            "src": "videos/video-placeholder.mp4",
-            "name": "video #2b"
           }
         }
       ]

@@ -1,7 +1,9 @@
 <template>
   <div class="CVideoPlayer">
+    <span>{{ this.currentStep.name }}</span>
     <video
       v-show="!ended"
+      controls
       ref="video_player"
       class="CVideoPlayer__video"
       @ended="onVideoEnd()"
@@ -19,6 +21,15 @@
         >
           {{ path.question }}
         </button>
+        <div v-if="this.currentStep.choices">
+          <div v-for="(choice, index) in this.currentStep.choices" :key="index">
+            <input type="checkbox" :id="index" :value="choice.value" v-model="checkedChoices" />
+            <label :for="index">{{ choice.name }}</label>
+          </div>
+          <div @click="checkedChoices = []">Remove all</div>
+          <br />
+          <span>Choix cochés : {{ checkedChoices }}</span>
+        </div>
       </div>
     </transition>
   </div>
@@ -37,6 +48,7 @@ export default {
       currentStep: this.data.step,
       questionShow: false,
       ended: false,
+      checkedChoices: [],
     }
   },
   mounted() {
@@ -46,15 +58,38 @@ export default {
     setCurrentVideo(step) {
       console.log('Video selected ! Loading the video...')
       this.$refs.video_player.pause()
-      this.currentStep = step
+      if (step.condition) {
+        this.getNextExperience(step)
+      } else {
+        this.currentStep = step
+      }
       this.questionShow = false
       this.$refs.video_player.load()
       this.$refs.video_player.play()
+    },
+    getNextExperience(step) {
+      if (this.checkCondition(step.condition)) this.currentStep = step
+      else if (!step.condition) {
+        console.log('NO MORE EXPERIENCE')
+      } else {
+        console.log(step.paths[0].step)
+        this.currentStep = step.paths[0].step
+        this.getNextExperience(this.currentStep)
+      }
+    },
+    jumpExp(step) {
+      while (!step.paths[0].step.condition && !this.checkCondition(step.paths[0].step.condition)) {
+        console.log('nothiiing')
+      }
     },
     onVideoEnd() {
       console.log('Video ended, checking next videos...')
       if (!this.currentStep.paths) this.ended = true
       else this.questionShow = true
+    },
+    checkCondition(condition) {
+      const found = this.checkedChoices.find(element => element == condition)
+      return typeof found !== 'undefined'
     },
     restart() {
       console.log('Restarting...')
@@ -73,6 +108,9 @@ export default {
   width: 100%;
   height: 100%;
   background: var(--psa-blue);
+  span {
+    color: white;
+  }
 
   &__video {
     width: 100%;
