@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      currentStep: this.data.step.paths[0].step.paths[0].step.paths[0].step.paths[0].step,
+      currentStep: this.data.step,
       questionShow: false,
       experience: null,
       ended: false,
