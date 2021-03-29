@@ -53,74 +53,6 @@
                             "step": {
                               "src": "videos/video-placeholder.mp4",
                               "name": "Choix des points d'interet #5",
-                              "paths": [
-                                {
-                                  "question": "Continuer le voyage",
-                                  "step": {
-                                    "src": "videos/video-placeholder.mp4",
-                                    "name": "L'arc de Triomphe #10a",
-                                    "experience_name": "ARC DE TRIOMPHE",
-                                    "condition": "experience_1",
-                                    "paths": [
-                                      {
-                                        "question": "Continuer le voyage",
-                                        "step": {
-                                          "src": "videos/video-placeholder.mp4",
-                                          "name": "La tour eiffel #10b",
-                                          "experience_name": "TOUR EIFFEL",
-                                          "condition": "experience_2",
-                                          "paths": [
-                                            {
-                                              "question": "Continuer le voyage",
-                                              "step": {
-                                                "src": "videos/video-placeholder.mp4",
-                                                "name": "Versailles #10c",
-                                                "experience_name": "VERSAILLES",
-                                                "condition": "experience_3",
-                                                "paths": [
-                                                  {
-                                                    "question": "Continuer le voyage",
-                                                    "step": {
-                                                      "src": "videos/video-placeholder.mp4",
-                                                      "name": "Les environs #11",
-                                                      "paths": [
-                                                        {
-                                                          "question": "Y a quoi à faire à Creuzon ?",
-                                                          "step": {
-                                                            "src": "videos/video-placeholder.mp4",
-                                                            "name": "Voix off des environs #12",
-                                                            "main_question": "Reservez un cours de surf ?",
-                                                            "paths": [
-                                                              {
-                                                                "question": "Oui",
-                                                                "step": {
-                                                                  "src": "videos/video-placeholder.mp4",
-                                                                  "name": "Tu vas pouvoir surfer demain ! #13a"
-                                                                }
-                                                              },
-                                                              {
-                                                                "question": "Non",
-                                                                "step": {
-                                                                  "src": "videos/video-placeholder.mp4",
-                                                                  "name": "Peut-être une autre fois #13b"
-                                                                }
-                                                              }
-                                                            ]
-                                                          }
-                                                        }
-                                                      ]
-                                                    }
-                                                  }
-                                                ]
-                                              }
-                                            }
-                                          ]
-                                        }
-                                      }
-                                    ]
-                                  }
-                                }
-                              ],
                               "choices": [
                                 {
                                   "name": "L’Arc de Triomphe",
@@ -133,6 +65,39 @@
                                 {
                                   "name": "Versailles",
                                   "value": "experience_3"
+                                }
+                              ],
+                              "paths": [
+                                {
+                                  "question": "Confirmer le choix",
+                                  "step": {
+                                    "src": "videos/video-placeholder.mp4",
+                                    "name": "Video modification des bias #6",
+                                    "main_question": "Voulez-vous modifier les biais sensoriels activés ?",
+                                    "paths": [
+                                      {
+                                        "question": "Oui",
+                                        "step": {
+                                          "src": "videos/video-placeholder.mp4",
+                                          "name": "Video modification des bias #7",
+                                          "paths": [
+                                            {
+                                              "question": "Commencer le voyage",
+                                              "step": {
+                                                "experience_starting": true
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "question": "Non",
+                                        "step": {
+                                          "experience_starting": true
+                                        }
+                                      }
+                                    ]
+                                  }
                                 }
                               ]
                             }
@@ -148,76 +113,7 @@
         }
       ]
     },
-    "bias": {
-      "src": "videos/video-placeholder.mp4",
-      "name": "Choix des bias #6 ",
-      "main_question": "Voulez-vous modifier les biais sensoriels activés ?",
-      "paths": [
-        {
-          "question": "Oui",
-          "step": {
-            "src": "videos/video-placeholder.mp4",
-            "name": "Video modification des bias #7",
-            "main_question": "Souhaitez-vous toujours découvrir xxx ?",
-            "paths": [
-              {
-                "question": "Oui",
-                "step": {
-                  "return": true
-                }
-              },
-              {
-                "question": "Non",
-                "step": {
-                  "src": "videos/video-placeholder.mp4",
-                  "name": "Video suivi passif #9",
-                  "paths": [
-                    {
-                      "question": "Continuer le voyage",
-                      "step": {
-                        "return": false
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "question": "Non",
-          "step": {
-            "src": "videos/video-placeholder.mp4",
-            "name": "Video modification des bias #7",
-            "main_question": "Souhaitez-vous toujours découvrir xxx ?",
-            "paths": [
-              {
-                "question": "Oui",
-                "step": {
-                  "return": true
-                }
-              },
-              {
-                "question": "Non",
-                "step": {
-                  "src": "videos/video-placeholder.mp4",
-                  "name": "Video suivi passif #9",
-                  "paths": [
-                    {
-                      "question": "Continuer le voyage",
-                      "step": {
-                        "return": false
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      ]
-    },
-    "bias_new": {
+    "check_poi": {
       "src": "videos/video-placeholder.mp4",
       "name": "Route & le POI approche #8 ",
       "main_question": "Souhaitez-vous toujours découvrir xxx ?",
@@ -225,41 +121,7 @@
         {
           "question": "Oui",
           "step": {
-            "src": "videos/video-placeholder.mp4",
-            "name": "Video modification des bias #6",
-            "main_question": "Voulez-vous modifier les biais sensoriels activés ?",
-            "paths": [
-              {
-                "question": "Oui",
-                "step": {
-                  "src": "videos/video-placeholder.mp4",
-                  "name": "Video modification des bias #7",
-                  "paths": [
-                    {
-                      "question": "Continuer le voyage",
-                      "step": {
-                        "return": true
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "question": "Non",
-                "step": {
-                  "src": "videos/video-placeholder.mp4",
-                  "name": "Video modification des bias #7",
-                  "paths": [
-                    {
-                      "question": "Continuer le voyage",
-                      "step": {
-                        "return": true
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
+            "return": true
           }
         },
         {
@@ -272,6 +134,63 @@
                 "question": "Continuer le voyage",
                 "step": {
                   "return": false
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "no_choice": {
+      "src": "videos/video-placeholder.mp4",
+      "name": "Video suivi passif #9",
+      "paths": [
+        {
+          "question": "Continuer le voyage",
+          "step": {
+            "src": "videos/video-placeholder.mp4",
+            "name": "Les environs #11",
+            "paths": [
+              {
+                "question": "Y a quoi à faire à Creuzon ?",
+                "step": {
+                  "src": "videos/video-placeholder.mp4",
+                  "name": "Voix off des environs #12",
+                  "main_question": "Reservez un cours de surf ?",
+                  "paths": [
+                    {
+                      "question": "Oui",
+                      "step": {
+                        "src": "videos/video-placeholder.mp4",
+                        "name": "Tu vas pouvoir surfer demain ! #13a",
+                        "paths": [
+                          {
+                            "question": "Finir le voyage",
+                            "step": {
+                              "src": "videos/video-placeholder.mp4",
+                              "name": "Fade out! #14"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "question": "Non",
+                      "step": {
+                        "src": "videos/video-placeholder.mp4",
+                        "name": "Peut-être une autre fois #13b",
+                        "paths": [
+                          {
+                            "question": "Finir le voyage",
+                            "step": {
+                              "src": "videos/video-placeholder.mp4",
+                              "name": "Fade out! #14"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
                 }
               }
             ]

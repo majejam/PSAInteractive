@@ -46,10 +46,14 @@ export default {
       required: true,
       type: Object,
     },
+    experiences: {
+      required: true,
+      type: Object,
+    },
   },
   data() {
     return {
-      currentStep: this.data.step.paths[0].step.paths[0].step.paths[0].step,
+      currentStep: this.data.step.paths[0].step.paths[0].step.paths[0].step.paths[0].step,
       questionShow: false,
       experience: null,
       ended: false,
@@ -63,7 +67,19 @@ export default {
     setCurrentVideo(step) {
       console.log('Video selected ! Loading the video...', step)
       this.$refs.video_player.pause()
-      if (step.condition) {
+      if (step.experience_starting) {
+        /**
+         * Switch tree
+         */
+        step = this.experiences.step
+      }
+
+      if (this.checkedChoices.length === 0 && this.currentStep.choices) {
+        /**
+         * If no choice selected
+         */
+        this.currentStep = this.data.no_choice
+      } else if (step.condition) {
         this.getNextExperience(step)
       } else {
         if (typeof step.return == 'undefined') {
@@ -84,26 +100,24 @@ export default {
           //this.currentStep = step
         }
       }
+
       this.questionShow = false
       this.$refs.video_player.load()
       this.$refs.video_player.play()
     },
     getNextExperience(step) {
-      console.log(step)
       if (this.checkCondition(step.condition)) {
         /**
          * Go to bias tree
          */
-        this.currentStep = this.data.bias_new
+        this.currentStep = this.data.check_poi
         this.experience = step
         //this.currentStep = step
       } else if (!step.condition) {
         this.experience = null
         this.currentStep = step
-        console.log('NO MORE EXPERIENCE')
+        console.log('No more experience, connecting to normal path')
       } else {
-        console.log(step.paths[0].step)
-        console.log('Hello')
         this.currentStep = step.paths[0].step
         this.getNextExperience(this.currentStep)
       }

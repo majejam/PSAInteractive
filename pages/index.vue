@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <c-video-player :data="content.video" />
+    <c-video-player :data="content.video" :experiences="experiences" />
   </div>
 </template>
 
 <script>
 export default {
   async asyncData({ store }) {
-    return { content: store.state.content }
+    return { content: store.state.content, experiences: store.state.experiences }
   },
   head() {
     return {
