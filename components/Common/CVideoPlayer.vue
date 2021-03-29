@@ -1,6 +1,7 @@
 <template>
   <div class="CVideoPlayer">
     <span>{{ this.currentStep.name }}</span>
+    <span v-if="experience"> - {{ this.experience.experience_name }}</span>
     <video
       v-show="!ended"
       controls
@@ -14,6 +15,18 @@
     </div>
     <transition name="fade">
       <div v-show="questionShow" class="CVideoPlayer__questions u-flex-center">
+        <span>{{ currentStep.main_question }}</span>
+        <div class="CVideoPlayer__questions__choices u-flex-center" v-if="this.currentStep.choices">
+          <div
+            v-for="(choice, index) in this.currentStep.choices"
+            class="CVideoPlayer__questions__choices--single"
+            :key="index"
+          >
+            <input type="checkbox" :id="index" :value="choice.value" v-model="checkedChoices" />
+            <label :for="index">{{ choice.name }}</label>
+          </div>
+          <div v-if="false" @click="checkedChoices = []">Remove all</div>
+        </div>
         <button
           v-for="(path, index) in this.currentStep.paths"
           :key="index"
@@ -21,15 +34,6 @@
         >
           {{ path.question }}
         </button>
-        <div v-if="this.currentStep.choices">
-          <div v-for="(choice, index) in this.currentStep.choices" :key="index">
-            <input type="checkbox" :id="index" :value="choice.value" v-model="checkedChoices" />
-            <label :for="index">{{ choice.name }}</label>
-          </div>
-          <div @click="checkedChoices = []">Remove all</div>
-          <br />
-          <span>Choix cochés : {{ checkedChoices }}</span>
-        </div>
       </div>
     </transition>
   </div>
@@ -45,8 +49,9 @@ export default {
   },
   data() {
     return {
-      currentStep: this.data.step,
+      currentStep: this.data.step.paths[0].step.paths[0].step.paths[0].step,
       questionShow: false,
+      experience: null,
       ended: false,
       checkedChoices: [],
     }
@@ -56,30 +61,51 @@ export default {
   },
   methods: {
     setCurrentVideo(step) {
-      console.log('Video selected ! Loading the video...')
+      console.log('Video selected ! Loading the video...', step)
       this.$refs.video_player.pause()
       if (step.condition) {
         this.getNextExperience(step)
       } else {
-        this.currentStep = step
+        if (typeof step.return == 'undefined') {
+          /**
+           * If in normal path & no choice condition
+           */
+          this.currentStep = step
+        } else if (step.return) {
+          /**
+           * If in bias path and selected to show experience
+           */
+          this.currentStep = this.experience
+        } else {
+          /**
+           * If in bias path & selected to skip experience
+           */
+          this.getNextExperience(this.experience.paths[0].step)
+          //this.currentStep = step
+        }
       }
       this.questionShow = false
       this.$refs.video_player.load()
       this.$refs.video_player.play()
     },
     getNextExperience(step) {
-      if (this.checkCondition(step.condition)) this.currentStep = step
-      else if (!step.condition) {
+      console.log(step)
+      if (this.checkCondition(step.condition)) {
+        /**
+         * Go to bias tree
+         */
+        this.currentStep = this.data.bias_new
+        this.experience = step
+        //this.currentStep = step
+      } else if (!step.condition) {
+        this.experience = null
+        this.currentStep = step
         console.log('NO MORE EXPERIENCE')
       } else {
         console.log(step.paths[0].step)
+        console.log('Hello')
         this.currentStep = step.paths[0].step
         this.getNextExperience(this.currentStep)
-      }
-    },
-    jumpExp(step) {
-      while (!step.paths[0].step.condition && !this.checkCondition(step.paths[0].step.condition)) {
-        console.log('nothiiing')
       }
     },
     onVideoEnd() {
@@ -95,6 +121,7 @@ export default {
       console.log('Restarting...')
       this.ended = false
       this.questionShow = false
+      this.checkedChoices = []
       this.currentStep = this.data.step
       this.$refs.video_player.load()
       this.$refs.video_player.play()
@@ -125,6 +152,16 @@ export default {
     right: 0;
     height: 100px;
     background: var(--psa-blue);
+
+    &__choices {
+      label {
+        color: white;
+      }
+
+      &--single {
+        margin: 0 10px;
+      }
+    }
 
     button {
       margin: 0 45px;
