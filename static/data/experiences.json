@@ -1,6 +1,6 @@
 {
   "step": {
-    "src": "videos/video-placeholder.mp4",
+    "src": "videos/compress/10a.mp4",
     "name": "L'arc de Triomphe #10a",
     "experience_name": "ARC DE TRIOMPHE",
     "condition": "experience_1",
@@ -8,7 +8,7 @@
       {
         "question": "Continuer le voyage",
         "step": {
-          "src": "videos/video-placeholder.mp4",
+          "src": "videos/compress/10b.mp4",
           "name": "La tour eiffel #10b",
           "experience_name": "TOUR EIFFEL",
           "condition": "experience_2",
@@ -16,7 +16,7 @@
             {
               "question": "Continuer le voyage",
               "step": {
-                "src": "videos/video-placeholder.mp4",
+                "src": "videos/compress/10c.mp4",
                 "name": "Versailles #10c",
                 "experience_name": "VERSAILLES",
                 "condition": "experience_3",
@@ -24,26 +24,26 @@
                   {
                     "question": "Continuer le voyage",
                     "step": {
-                      "src": "videos/video-placeholder.mp4",
+                      "src": "videos/compress/11.mp4",
                       "name": "Les environs #11",
                       "paths": [
                         {
                           "question": "Y a quoi à faire à Creuzon ?",
                           "step": {
-                            "src": "videos/video-placeholder.mp4",
+                            "src": "videos/compress/12.mp4",
                             "name": "Voix off des environs #12",
                             "main_question": "Reservez un cours de surf ?",
                             "paths": [
                               {
                                 "question": "Oui",
                                 "step": {
-                                  "src": "videos/video-placeholder.mp4",
+                                  "src": "videos/compress/13a.mp4",
                                   "name": "Tu vas pouvoir surfer demain ! #13a",
                                   "paths": [
                                     {
                                       "question": "Finir le voyage",
                                       "step": {
-                                        "src": "videos/video-placeholder.mp4",
+                                        "src": "videos/compress/14.mp4",
                                         "name": "Fade out! #14"
                                       }
                                     }
@@ -53,13 +53,13 @@
                               {
                                 "question": "Non",
                                 "step": {
-                                  "src": "videos/video-placeholder.mp4",
+                                  "src": "videos/compress/13b.mp4",
                                   "name": "Peut-être une autre fois #13b",
                                   "paths": [
                                     {
                                       "question": "Finir le voyage",
                                       "step": {
-                                        "src": "videos/video-placeholder.mp4",
+                                        "src": "videos/compress/14.mp4",
                                         "name": "Fade out! #14"
                                       }
                                     }

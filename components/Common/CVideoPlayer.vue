@@ -103,7 +103,9 @@ export default {
 
       this.questionShow = false
       this.$refs.video_player.load()
-      this.$refs.video_player.play()
+      setTimeout(() => {
+        this.$refs.video_player.play()
+      }, 100)
     },
     getNextExperience(step) {
       if (this.checkCondition(step.condition)) {
@@ -138,7 +140,9 @@ export default {
       this.checkedChoices = []
       this.currentStep = this.data.step
       this.$refs.video_player.load()
-      this.$refs.video_player.play()
+      setTimeout(() => {
+        this.$refs.video_player.play()
+      }, 100)
     },
   },
 }

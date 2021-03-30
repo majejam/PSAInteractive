@@ -27,31 +27,31 @@
   },
   "video": {
     "step": {
-      "src": "videos/video-placeholder.mp4",
+      "src": "videos/compress/01.mp4",
       "name": "Valise dans la voiture #1",
       "paths": [
         {
           "question": "Remplir ma destination",
           "step": {
-            "src": "videos/video-placeholder.mp4",
+            "src": "videos/compress/02.mp4",
             "name": "Remplissage de destination #2",
             "paths": [
               {
                 "question": "S'installer dans la voiture",
                 "step": {
-                  "src": "videos/video-placeholder.mp4",
+                  "src": "videos/compress/03.mp4",
                   "name": "Installation dans la voiture #3",
                   "paths": [
                     {
                       "question": "Voir les points d'interets",
                       "step": {
-                        "src": "videos/video-placeholder.mp4",
+                        "src": "videos/compress/04.mp4",
                         "name": "Voir les points d'intêréts #4",
                         "paths": [
                           {
                             "question": "Choisir mes points d'interets",
                             "step": {
-                              "src": "videos/video-placeholder.mp4",
+                              "src": "videos/compress/05.mp4",
                               "name": "Choix des points d'interet #5",
                               "choices": [
                                 {
@@ -71,14 +71,14 @@
                                 {
                                   "question": "Confirmer le choix",
                                   "step": {
-                                    "src": "videos/video-placeholder.mp4",
+                                    "src": "videos/compress/06.mp4",
                                     "name": "Video modification des bias #6",
                                     "main_question": "Voulez-vous modifier les biais sensoriels activés ?",
                                     "paths": [
                                       {
                                         "question": "Oui",
                                         "step": {
-                                          "src": "videos/video-placeholder.mp4",
+                                          "src": "videos/compress/07.mp4",
                                           "name": "Video modification des bias #7",
                                           "paths": [
                                             {
@@ -114,7 +114,7 @@
       ]
     },
     "check_poi": {
-      "src": "videos/video-placeholder.mp4",
+      "src": "videos/compress/08.mp4",
       "name": "Route & le POI approche #8 ",
       "main_question": "Souhaitez-vous toujours découvrir xxx ?",
       "paths": [
@@ -127,7 +127,7 @@
         {
           "question": "Non",
           "step": {
-            "src": "videos/video-placeholder.mp4",
+            "src": "videos/compress/09.mp4",
             "name": "Video suivi passif #9",
             "paths": [
               {
@@ -142,32 +142,32 @@
       ]
     },
     "no_choice": {
-      "src": "videos/video-placeholder.mp4",
+      "src": "videos/compress/09.mp4",
       "name": "Video suivi passif #9",
       "paths": [
         {
           "question": "Continuer le voyage",
           "step": {
-            "src": "videos/video-placeholder.mp4",
+            "src": "videos/compress/11.mp4",
             "name": "Les environs #11",
             "paths": [
               {
                 "question": "Y a quoi à faire à Creuzon ?",
                 "step": {
-                  "src": "videos/video-placeholder.mp4",
+                  "src": "videos/compress/12.mp4",
                   "name": "Voix off des environs #12",
                   "main_question": "Reservez un cours de surf ?",
                   "paths": [
                     {
                       "question": "Oui",
                       "step": {
-                        "src": "videos/video-placeholder.mp4",
+                        "src": "videos/compress/13a.mp4",
                         "name": "Tu vas pouvoir surfer demain ! #13a",
                         "paths": [
                           {
                             "question": "Finir le voyage",
                             "step": {
-                              "src": "videos/video-placeholder.mp4",
+                              "src": "videos/compress/14.mp4",
                               "name": "Fade out! #14"
                             }
                           }
@@ -177,13 +177,13 @@
                     {
                       "question": "Non",
                       "step": {
-                        "src": "videos/video-placeholder.mp4",
+                        "src": "videos/compress/13b.mp4",
                         "name": "Peut-être une autre fois #13b",
                         "paths": [
                           {
                             "question": "Finir le voyage",
                             "step": {
-                              "src": "videos/video-placeholder.mp4",
+                              "src": "videos/compress/14.mp4",
                               "name": "Fade out! #14"
                             }
                           }
