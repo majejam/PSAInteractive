@@ -4,12 +4,50 @@
       <img class="CLoader__images__hetic" src="images/hetic_logo.png" alt="Logo d'hetic" />
       <img class="CLoader__images__psa" src="images/psa_logo.png" alt="Logo de PSA" />
     </div>
-    <button class="CLoader__start" @click="$emit('start')">Commencer l'expérience</button>
+    <span class="CLoader__pourcent" v-if="Math.round(pourcent) !== 100"
+      >{{ Math.round(pourcent) }} %</span
+    >
+    <button v-if="Math.round(pourcent) === 100" class="CLoader__start" @click="$emit('start')">
+      Commencer l'expérience
+    </button>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    data: {
+      required: true,
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      pourcent: 100,
+      toLoad: 0,
+      count: 0,
+    }
+  },
+  mounted() {
+    console.log(this.data)
+    this.toLoad = this.data.url.length
+    /*        
+    this.data.url.forEach(url => {
+      var req = new XMLHttpRequest()
+      req.open('GET', url, true)
+      req.responseType = 'blob'
+
+      req.onload = _e => {
+        console.log(_e.srcElement)
+        this.count++
+        this.pourcent = (this.count / this.toLoad) * 100
+        console.log(this.count / this.toLoad)
+      }
+
+      req.send()
+    }) */
+  },
+}
 </script>
 
 <style lang="scss">
@@ -38,6 +76,14 @@ export default {}
     }
   }
 
+  &__pourcent {
+    color: white;
+    position: absolute;
+    bottom: 300px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
   &__start {
     position: absolute;
     bottom: 50px;
@@ -47,6 +93,7 @@ export default {}
     border: solid white 1px;
     color: white;
     cursor: pointer;
+    border-radius: 4px;
     transition: 0.3s ease-in-out all;
 
     &:hover {

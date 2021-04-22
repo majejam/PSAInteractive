@@ -31,25 +31,25 @@
       "name": "Valise dans la voiture #1",
       "paths": [
         {
-          "question": "Remplir ma destination",
+          "question": "Je choisis ma destination",
           "step": {
             "src": "videos/compress/02.mp4",
             "name": "Remplissage de destination #2",
             "paths": [
               {
-                "question": "S'installer dans la voiture",
+                "question": "Je m’installe à bord du véhicule",
                 "step": {
                   "src": "videos/compress/03.mp4",
                   "name": "Installation dans la voiture #3",
                   "paths": [
                     {
-                      "question": "Voir les points d'interets",
+                      "question": "Consulter les différents points d’intérets",
                       "step": {
                         "src": "videos/compress/04.mp4",
                         "name": "Voir les points d'intêréts #4",
                         "paths": [
                           {
-                            "question": "Choisir mes points d'interets",
+                            "question": "Je choisis mes points d’intêrets",
                             "step": {
                               "src": "videos/compress/05.mp4",
                               "name": "Choix des points d'interet #5",
@@ -69,7 +69,7 @@
                               ],
                               "paths": [
                                 {
-                                  "question": "Confirmer le choix",
+                                  "question": "Je valide mon choix",
                                   "step": {
                                     "src": "videos/compress/06.mp4",
                                     "name": "Video modification des bias #6",
@@ -82,7 +82,7 @@
                                           "name": "Video modification des bias #7",
                                           "paths": [
                                             {
-                                              "question": "Commencer le voyage",
+                                              "question": "Je commence l’expérience",
                                               "step": {
                                                 "experience_starting": true
                                               }
@@ -116,7 +116,7 @@
     "check_poi": {
       "src": "videos/compress/08.mp4",
       "name": "Route & le POI approche #8 ",
-      "main_question": "Souhaitez-vous toujours découvrir xxx ?",
+      "main_question": "Souhaitez-vous toujours découvrir [[value]] ?",
       "paths": [
         {
           "question": "Oui",
@@ -131,7 +131,7 @@
             "name": "Video suivi passif #9",
             "paths": [
               {
-                "question": "Continuer le voyage",
+                "question": "Je continue l’expérience",
                 "step": {
                   "return": false
                 }
@@ -146,7 +146,7 @@
       "name": "Video suivi passif #9",
       "paths": [
         {
-          "question": "Continuer le voyage",
+          "question": "Je continue l’expérience",
           "step": {
             "src": "videos/compress/11.mp4",
             "name": "Les environs #11",
@@ -198,5 +198,24 @@
         }
       ]
     }
-  }
+  },
+  "url": [
+    "videos/compress/01.mp4",
+    "videos/compress/02.mp4",
+    "videos/compress/03.mp4",
+    "videos/compress/04.mp4",
+    "videos/compress/05.mp4",
+    "videos/compress/06.mp4",
+    "videos/compress/07.mp4",
+    "videos/compress/08.mp4",
+    "videos/compress/09.mp4",
+    "videos/compress/10a.mp4",
+    "videos/compress/10b.mp4",
+    "videos/compress/10c.mp4",
+    "videos/compress/11.mp4",
+    "videos/compress/12.mp4",
+    "videos/compress/13a.mp4",
+    "videos/compress/13b.mp4",
+    "videos/compress/14.mp4"
+  ]
 }

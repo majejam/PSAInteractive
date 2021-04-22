@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <c-video-player :data="content.video" :experiences="experiences" />
+    <c-loader :data="content" v-if="showLoader" @start="hide()" />
+    <c-video-player v-if="!showLoader" :data="content.video" :experiences="experiences" />
   </div>
 </template>
 
@@ -21,6 +22,16 @@ export default {
         },
       ],
     }
+  },
+  data() {
+    return {
+      showLoader: true,
+    }
+  },
+  methods: {
+    hide() {
+      this.showLoader = false
+    },
   },
 }
 </script>

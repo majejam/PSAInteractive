@@ -2,37 +2,37 @@
   "step": {
     "src": "videos/compress/10a.mp4",
     "name": "L'arc de Triomphe #10a",
-    "experience_name": "ARC DE TRIOMPHE",
+    "experience_name": "l'Arc de Triomphe",
     "condition": "experience_1",
     "paths": [
       {
-        "question": "Continuer le voyage",
+        "question": "Je continue l’expérience",
         "step": {
           "src": "videos/compress/10b.mp4",
           "name": "La tour eiffel #10b",
-          "experience_name": "TOUR EIFFEL",
+          "experience_name": "la tour eiffel",
           "condition": "experience_2",
           "paths": [
             {
-              "question": "Continuer le voyage",
+              "question": "Je continue l’expérience",
               "step": {
                 "src": "videos/compress/10c.mp4",
                 "name": "Versailles #10c",
-                "experience_name": "VERSAILLES",
+                "experience_name": "Versailles",
                 "condition": "experience_3",
                 "paths": [
                   {
-                    "question": "Continuer le voyage",
+                    "question": "Je continue l’expérience",
                     "step": {
                       "src": "videos/compress/11.mp4",
                       "name": "Les environs #11",
                       "paths": [
                         {
-                          "question": "Y a quoi à faire à Creuzon ?",
+                          "question": "Quelles sont les activités disponibles à Crozon ?",
                           "step": {
                             "src": "videos/compress/12.mp4",
                             "name": "Voix off des environs #12",
-                            "main_question": "Reservez un cours de surf ?",
+                            "main_question": "Réserver un cours de surf ?",
                             "paths": [
                               {
                                 "question": "Oui",
@@ -41,7 +41,7 @@
                                   "name": "Tu vas pouvoir surfer demain ! #13a",
                                   "paths": [
                                     {
-                                      "question": "Finir le voyage",
+                                      "question": "Fin du voyage et de l’expérience",
                                       "step": {
                                         "src": "videos/compress/14.mp4",
                                         "name": "Fade out! #14"

@@ -1,45 +1,132 @@
 <template>
-  <header class="CHeader u-flex-center">
-    <ul class="CHeader__links u-flex-center">
-      <li v-for="(link, index) in links" :key="index" class="CHeader__link">
-        <a
-          class="CHeader__link--a"
-          :href="link.href"
-          :target="link.target"
-          rel="noopener noreferrer"
-          >{{ link.text }}</a
+  <transition name="question_fade" appear mode="out-in">
+    <div v-if="show" :key="step.main_question" class="CQuestion u-flex-center">
+      <span v-if="step.main_question" class="CQuestion__MainQuestion">{{
+        questionName(step.main_question)
+      }}</span>
+      <div class="CQuestion__choices u-flex-center" v-if="step.choices">
+        <div
+          v-for="(choice, index) in step.choices"
+          class="CQuestion__choices--single"
+          :key="index"
         >
-      </li>
-    </ul>
-  </header>
+          <input
+            type="checkbox"
+            :id="index"
+            :value="choice.value"
+            @change="checkedValues"
+            v-model="checkedChoices"
+          />
+          <label :for="index">{{ choice.name }}</label>
+        </div>
+      </div>
+      <div class="u-flex-center">
+        <button
+          v-for="(path, index) in step.paths"
+          :key="index"
+          class="CQuestion__Button"
+          @click="$emit('changeVideo', path.step)"
+        >
+          {{ path.question }}
+        </button>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
   props: {
-    links: {
+    step: {
       required: true,
-      type: Array,
-      validator: function (value) {
-        return value.length !== 0
-      },
+      type: Object,
+    },
+    show: {
+      required: true,
+      type: Boolean,
+    },
+    experience: {
+      required: true,
+      type: String,
+      default: '',
     },
   },
+  data() {
+    return {
+      checkedChoices: [],
+    }
+  },
+  methods: {
+    checkedValues() {
+      this.$emit('checkedValues', this.checkedChoices)
+    },
+    removeAll() {
+      this.checkedChoices = []
+      this.$emit('checkedValues', this.checkedChoices)
+    },
+    questionName(question) {
+      if (this.experience !== '' && question) {
+        return question.replace('[[value]]', this.experience)
+      } else return question
+    },
+  },
+  computed: {},
 }
 </script>
 
 <style lang="scss">
-.CHeader {
-  width: 100%;
-  height: 50px;
-  padding: var(--col-main);
+.CQuestion {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  padding: 32px;
+  flex-flow: column;
+  background: var(--psa-blue);
 
-  &__link {
-    padding: var(--pad-main);
+  &__choices {
+    margin-bottom: 32px;
+    label {
+      color: white;
+    }
 
-    &-a {
-      color: var(--main-black);
+    &--single {
+      margin: 0 10px;
     }
   }
+
+  &__MainQuestion {
+    font-size: 1.12em;
+    margin-bottom: 32px;
+  }
+
+  &__Button {
+    cursor: pointer;
+    margin: 0 45px;
+    padding: 16px 32px;
+    border-radius: 4px;
+    background: var(--psa-blue);
+    color: white;
+    border: 1px white solid;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--psa-blue);
+      background: white;
+      border: 1px var(--psa-blue) solid;
+    }
+  }
+}
+
+.question_fade-enter-active {
+  transition: all 0.5s ease-in-out;
+}
+
+.question_fade-leave-active {
+  transition: all 0.7s ease-in-out 0.2s;
+}
+.question_fade-enter, .question_fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(100%);
 }
 </style>

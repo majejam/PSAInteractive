@@ -1,23 +1,11 @@
 <template>
   <div>
-    <c-loader v-if="showLoader" @start="hide()" />
-    <Nuxt v-if="!showLoader" />
+    <Nuxt />
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      showLoader: true,
-    }
-  },
-  methods: {
-    hide() {
-      this.showLoader = false
-    },
-  },
-}
+export default {}
 </script>
 <style>
 html {

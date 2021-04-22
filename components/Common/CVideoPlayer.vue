@@ -1,46 +1,34 @@
 <template>
   <div class="CVideoPlayer">
-    <span>{{ this.currentStep.name }}</span>
-    <span v-if="experience"> - {{ this.experience.experience_name }}</span>
+    <span class="currentVideo"
+      >{{ currentStep.name }}
+      <span v-if="experience"> - {{ experience.experience_name }}</span></span
+    >
+    <button class="skipVideo" @click="skipVideo">next video</button>
     <video
       v-show="!ended"
-      controls
       ref="video_player"
       class="CVideoPlayer__video"
       @ended="onVideoEnd()"
-      :src="this.currentStep.src"
+      :src="currentStep.src"
     ></video>
     <div class="CVideoPlayer__restart u-flex-center">
       <button v-if="ended" @click="restart()">restart ?</button>
     </div>
-    <transition name="fade">
-      <div v-show="questionShow" class="CVideoPlayer__questions u-flex-center">
-        <span>{{ currentStep.main_question }}</span>
-        <div class="CVideoPlayer__questions__choices u-flex-center" v-if="this.currentStep.choices">
-          <div
-            v-for="(choice, index) in this.currentStep.choices"
-            class="CVideoPlayer__questions__choices--single"
-            :key="index"
-          >
-            <input type="checkbox" :id="index" :value="choice.value" v-model="checkedChoices" />
-            <label :for="index">{{ choice.name }}</label>
-          </div>
-          <div v-if="false" @click="checkedChoices = []">Remove all</div>
-        </div>
-        <button
-          v-for="(path, index) in this.currentStep.paths"
-          :key="index"
-          @click="setCurrentVideo(path.step)"
-        >
-          {{ path.question }}
-        </button>
-      </div>
-    </transition>
+    <c-question
+      :step="currentStep"
+      :show="questionShow"
+      :experience="experience.experience_name"
+      @changeVideo="setCurrentVideo"
+      @checkedValues="updateChecked"
+    />
   </div>
 </template>
 
 <script>
+import CQuestion from './CQuestion.vue'
 export default {
+  components: { CQuestion },
   props: {
     data: {
       required: true,
@@ -55,7 +43,9 @@ export default {
     return {
       currentStep: this.data.step,
       questionShow: false,
-      experience: null,
+      experience: {
+        experience_name: '',
+      },
       ended: false,
       checkedChoices: [],
     }
@@ -64,6 +54,9 @@ export default {
     this.$refs.video_player.play()
   },
   methods: {
+    updateChecked(_e) {
+      this.checkedChoices = _e
+    },
     setCurrentVideo(step) {
       console.log('Video selected ! Loading the video...', step)
       this.$refs.video_player.pause()
@@ -106,6 +99,11 @@ export default {
       setTimeout(() => {
         this.$refs.video_player.play()
       }, 100)
+    },
+    skipVideo() {
+      if (this.$refs.video_player) {
+        this.$refs.video_player.currentTime = this.$refs.video_player.duration - 0.5
+      }
     },
     getNextExperience(step) {
       if (this.checkCondition(step.condition)) {
@@ -209,11 +207,29 @@ export default {
 
   .fade-enter-active,
   .fade-leave-active {
-    transition: all 0.5s;
+    transition: all 0.5s ease-in-out;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
-    transform: translateY(100%);
   }
+}
+
+.currentVideo {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+}
+
+.skipVideo {
+  position: fixed;
+  top: 40px;
+  left: 10px;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid white;
+  cursor: pointer;
+  z-index: 100;
 }
 </style>
