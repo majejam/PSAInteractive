@@ -43,16 +43,16 @@
                   "name": "Installation dans la voiture #3",
                   "paths": [
                     {
-                      "question": "Consulter les différents points d’intérets",
+                      "question": "Consulter les différents points d’intérêts",
                       "step": {
                         "src": "videos/compress/04.mp4",
-                        "name": "Voir les points d'intêréts #4",
+                        "name": "Voir les points d’intérêts #4",
                         "paths": [
                           {
-                            "question": "Je choisis mes points d’intêrets",
+                            "question": "Je choisis mes points d’intérêts",
                             "step": {
                               "src": "videos/compress/05.mp4",
-                              "name": "Choix des points d'interet #5",
+                              "name": "Choix des points d'intérêts #5",
                               "choices": [
                                 {
                                   "name": "L’Arc de Triomphe",
@@ -152,42 +152,24 @@
             "name": "Les environs #11",
             "paths": [
               {
-                "question": "Y a quoi à faire à Creuzon ?",
+                "question": "Quelles sont les activités disponibles à Crozon ?",
                 "step": {
                   "src": "videos/compress/12.mp4",
                   "name": "Voix off des environs #12",
-                  "main_question": "Reservez un cours de surf ?",
+                  "main_question": "Réserver un cours de surf ?",
                   "paths": [
                     {
                       "question": "Oui",
                       "step": {
                         "src": "videos/compress/13a.mp4",
-                        "name": "Tu vas pouvoir surfer demain ! #13a",
-                        "paths": [
-                          {
-                            "question": "Finir le voyage",
-                            "step": {
-                              "src": "videos/compress/14.mp4",
-                              "name": "Fade out! #14"
-                            }
-                          }
-                        ]
+                        "name": "Tu vas pouvoir surfer demain ! #13a"
                       }
                     },
                     {
                       "question": "Non",
                       "step": {
                         "src": "videos/compress/13b.mp4",
-                        "name": "Peut-être une autre fois #13b",
-                        "paths": [
-                          {
-                            "question": "Finir le voyage",
-                            "step": {
-                              "src": "videos/compress/14.mp4",
-                              "name": "Fade out! #14"
-                            }
-                          }
-                        ]
+                        "name": "Peut-être une autre fois #13b"
                       }
                     }
                   ]

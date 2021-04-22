@@ -1,10 +1,10 @@
 <template>
   <div class="CVideoPlayer">
-    <span class="currentVideo"
+    <span class="currentVideo" v-if="false"
       >{{ currentStep.name }}
       <span v-if="experience"> - {{ experience.experience_name }}</span></span
     >
-    <button class="skipVideo" @click="skipVideo">next video</button>
+    <button class="skipVideo" v-if="false" @click="skipVideo">next video</button>
     <video
       v-show="!ended"
       ref="video_player"
@@ -12,9 +12,15 @@
       @ended="onVideoEnd()"
       :src="currentStep.src"
     ></video>
-    <div class="CVideoPlayer__restart u-flex-center">
-      <button v-if="ended" @click="restart()">restart ?</button>
-    </div>
+    <transition name="fade" appear mode="out-in">
+      <div v-if="ended" class="CVideoPlayer__restart u-flex-center">
+        <span class="CVideoPlayer__restart--legend"
+          >Vous pouvez maintenant retenter l’expérience en modifiant vos choix et en découvrant les
+          autres points d'intérêts !</span
+        >
+        <button @click="restart()">Recommencer</button>
+      </div>
+    </transition>
     <c-question
       :step="currentStep"
       :show="questionShow"
@@ -114,7 +120,9 @@ export default {
         this.experience = step
         //this.currentStep = step
       } else if (!step.condition) {
-        this.experience = null
+        this.experience = {
+          experience_name: '',
+        }
         this.currentStep = step
         console.log('No more experience, connecting to normal path')
       } else {
@@ -190,10 +198,19 @@ export default {
   &__restart {
     width: 100%;
     height: 100%;
+    flex-flow: column;
+
+    &--legend {
+      margin-bottom: 24px;
+      line-height: 1.5;
+      text-align: center;
+      width: 30%;
+    }
 
     button {
       padding: 20px 50px;
       border: solid white 1px;
+      border-radius: 4px;
       color: white;
       cursor: pointer;
       transition: 0.3s ease-in-out all;
